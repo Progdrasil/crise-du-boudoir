@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#14151d">
+  <title>Crise du Boudoir — À vous de tenir la porte.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Crise du Boudoir, accueil"><span class="brand-icon">✳</span><span>CRISE DU<br><b>BOUDOIR</b></span></a>
+      <div class="live-label"><i></i> SIMULATEUR DE NUITS COMPLIQUÉES</div>
+      <div class="header-actions"><button id="sound" class="icon-button" aria-label="Activer le son">♫ <span>SON OFF</span></button><button id="help" class="icon-button">? <span>LES RÈGLES</span></button><button id="pause" class="icon-button" disabled>Ⅱ <span>PAUSE</span></button></div>
+    </header>
+    <main>
+      <section class="heading"><div><div class="eyebrow">LA NUIT EST À VOUS. LA FILE AUSSI.</div><h1>Gardez le rythme<span>.</span></h1><p>Des billets, des manteaux et beaucoup trop d’impatience.</p></div><div class="night-badge"><span class="moon">◔</span><div id="night-name">01 / PREMIÈRE NUIT</div><small id="night-theme">DRESS CODE : NÉON</small></div></section>
+      <section class="stats" aria-label="Statistiques de la partie">
+        <div class="stat mood-stat"><span>HUMEUR COLLECTIVE</span><div><b id="mood-value">100<span>%</span></b><span id="mood-face">☺</span></div><div class="meter"><i id="mood-bar"></i></div></div>
+        <div class="stat"><span>TEMPS RESTANT</span><b id="time-value">01:30</b><small>La porte ferme à la fin du chrono</small></div>
+        <div class="stat"><span>VISITEURS SATISFAITS</span><b id="served-value">0 <em>/ 8</em></b><small id="target-label">Objectif de la soirée</small></div>
+        <div class="stat score-stat"><span>SCORE DE LA SOIRÉE</span><b id="score-value">0000</b><small id="combo-label">À vous de lancer la nuit</small></div>
+      </section>
+      <div class="game-layout">
+        <aside class="sidebar"><div class="section-label">LA PROGRAMMATION <span>10 NUITS</span></div><div id="levels"></div><div class="tip"><span>✦ LE CONSEIL DU PORTIER</span><p id="tip">Scannez le billet, vérifiez la tenue, puis tamponnez. Le vestiaire termine l’entrée.</p></div></aside>
+        <section class="venue" aria-label="Espace de jeu">
+          <div class="venue-header"><div><span class="live-dot"></span> <b>LE BOUDOIR</b><span class="venue-sub"> / CONTRÔLE DES FLUX</span></div><span id="guest-count">EN ATTENTE D’OUVERTURE</span></div>
+          <div class="dancefloor"><div class="speaker left-speaker"><i></i><i></i></div><div><span>LAISSEZ LA NUIT ENTRER</span><strong>BOUDOIR<span>✳</span></strong><div class="dance-people">♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟</div></div><div class="speaker"><i></i><i></i></div></div>
+          <div class="flow-label"><span>↑ VERS LE DANCEFLOOR</span><span>LES MANTEAUX, C’EST PAR ICI ↓</span></div>
+          <div class="stations">
+            <button class="station" id="scan-station" data-action="scan"><span class="station-key">1</span><span class="station-icon">▤</span><b>Scanner</b><small>Contrôle du billet</small><div class="station-progress"><i></i></div></button>
+            <button class="station pink" id="stamp-station" data-action="stamp"><span class="station-key">2</span><span class="station-icon">✳</span><b>Tamponner</b><small>Le sésame du Boudoir</small><div class="station-progress"><i></i></div></button>
+            <button class="station amber" id="coat-station" data-action="coat"><span class="station-key">3</span><span class="station-icon">♧</span><b>Vestiaire</b><small>Dépôt & retrait des manteaux</small><div class="station-progress"><i></i></div></button>
+          </div>
+          <div class="queue-area">
+            <div class="queue-lane regular"><div class="lane-title"><span>↗ ENTRÉE CLASSIQUE</span><b id="regular-count">0</b></div><div class="queue" id="regular-queue"></div><div class="lane-foot">BILLET → TAMPON → VESTIAIRE</div></div>
+            <div class="queue-lane vip"><div class="lane-title"><span>✦ FILE VIP</span><b id="vip-count">—</b></div><div class="queue" id="vip-queue"></div><div class="lane-foot" id="vip-foot">OUVERTURE À LA NUIT 04</div></div>
+            <div class="queue-lane exit"><div class="lane-title"><span>↘ SORTIE</span><b id="exit-count">0</b></div><div class="queue" id="exit-queue"></div><div class="lane-foot">RENDEZ-LEUR LE BON MANTEAU</div></div>
+          </div>
+          <div class="venue-footer"><span><i class="legend-dot"></i> CALME</span><span><i class="legend-dot impatient"></i> IMPATIENT</span><span><i class="legend-dot angry"></i> À BOUT</span><span class="keyboard-tip">CLIC : SÉLECTIONNER · 1 / 2 / 3 : AGIR · 4 : REFUSER</span></div>
+        </section>
+        <aside class="inspection"><div class="section-label">VOTRE VISITEUR <span>↙</span></div><div id="operator-switch" hidden><button data-operator="1">PORTIER 1</button><button data-operator="2">PORTIER 2</button></div><div id="inspector"></div><div class="log-wrap"><div class="section-label">LES BRUITS DE LA FILE <span>◉</span></div><div id="event-log" aria-live="polite"></div></div></aside>
+      </div>
+      <footer class="page-footer"><span>CRISE DU BOUDOIR <i>VOL. 01</i></span><span>Un peu de méthode. Beaucoup de sang-froid. <span class="footer-star">✳</span></span></footer>
+    </main>
+  </div>
+  <div id="modal" class="modal-backdrop"></div>
+  <script src="engine.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
